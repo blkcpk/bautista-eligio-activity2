@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bautista, Eligio Activity</title>
+</head>
+<body> 
+    <h1 class="setup""></h1>
+    <h2  class="punchline"></h2>
+</body>
+<script type ="text/javascript">
+
+    fetch("https://official-joke-api.appspot.com/random_joke")
+        .then(response => {
+            //indicate the error message if response is not status code 200, return response otherwise
+            if(!response.ok){
+                throw new Error("Something went wrong" + response.statusText)
+            }
+            return response.json()
+        })
+        .then(jokjokjok =>{
+            //send the content of the variable data to console output of the browser
+            console.log(jokjokjok)
+            //user queryselector to select the h1 with class setup
+            document.querySelector(".setup").innerHTML = "Setup: " + jokjokjok.setup
+            // use queryselector to select the h1 with class punchline and display the value of setup
+            document.querySelector(".punchline").innerHTML = "Punchline: " + jokjokjok.punchline
+        })
+
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bautista, Eligio Activity</title>
+</head>
+<body> 
+    <h1 class="setup""></h1>
+    <h2  class="punchline"></h2>
+</body>
+<script type ="text/javascript">
+
+    // create an xmlhttpreuquest object
+    request = new XMLHttpRequest()
+    // open a get request with remote server url
+    request.open("GET", "https://official-joke-api.appspot.com/random_joke")
+    // send the Http request
+    request.send()
+
+    // triggered when the responce is completed
+    request.onload = function(){
+        if (request.status == 200){
+            //parse JSON data
+            data = JSON.parse(request.responseText)
+            // send the content of the variable data to console output of the browser
+            console.log(data)
+            // use queryselector to select the h1 with class setup and display the value of setup
+            document.querySelector(".setup").innerHTML = "Setup: " + data.setup
+            // use queryselector to select the h1 with class punchline and display the value of setup
+            document.querySelector(".punchline").innerHTML = "Punchline: " + data.punchline
+        }
+        else if (request.status == 404) {
+            console.log("No Records Found!")
+        }
+    }
+</script>
+</html>
